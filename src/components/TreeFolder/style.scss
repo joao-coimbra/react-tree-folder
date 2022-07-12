@@ -1,0 +1,120 @@
+#tree-folder {
+    width: fit-content;
+    position: fixed;
+    left: 0;
+    background-color: #282c34;
+    padding-right: 5px;
+    height: 100vh;
+    color: white;
+    text-align: left;
+
+    p, div {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        color: rgba($color: white, $alpha: .7);
+    }
+
+    li.renderfile {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    // all folders
+    ul {
+        list-style-type: none;
+        &.folder, &.folder > li.renderfile {
+            position: relative;
+            padding-left: 10px;
+            background-color: transparent !important;
+            text-transform: initial;
+            // font-size: .85rem;
+            border-left: 1px solid rgba($color: white, $alpha: .2);
+
+            svg {
+                // font-size: 15px;
+                min-width: 15px;
+                min-height: 15px;
+            }
+
+            &:hover {
+
+                > li > ul.folder, > li.renderfile {
+                    border-left: 1px solid rgba($color: white, $alpha: .6) !important;
+                }
+
+                > .content p {
+                    color: white
+                }
+            }
+
+            > .content {
+                > div {
+                    display: flex;
+                    gap: 2px;
+                    align-items: center;
+                }
+
+                &:hover {
+                    background-color: rgba($color: white, $alpha: .1);
+                }
+
+                p {
+                    padding: 0px 3px;
+                }
+            }
+
+            &.open {
+
+                .folder, .renderfile {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    > .content {
+        min-width: 10vw;
+        width: 20vw;
+        max-width: 400px;
+
+        // first folder
+        > ul.folder {
+            padding-left: 2px;
+            text-transform: uppercase;
+            font-size: .9rem;
+            border: none;
+
+            > .content {
+                background-color: rgba($color: white, $alpha: .2);
+
+                > svg {
+                    &:first-child {
+                        display: block;
+                    }
+                    display: none;
+                }
+
+                p {
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+
+    #resize {
+        width: 5px;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        cursor: ew-resize;
+
+        &:hover {
+            background-color: rgba($color: white, $alpha: .2);
+        }
+    }
+}

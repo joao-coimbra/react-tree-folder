@@ -1,22 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+
+import { TreeFolder, RenderFolder as Folder, RenderFile as File } from './components/TreeFolder'
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <TreeFolder>
+          <Folder name='app'>
+            <Folder name='client' />
+            <Folder name='loja'>
+              <Folder name='barco' />
+              <Folder name='pijama'>
+                <Folder name='casaco'/>
+                <File name='calça'/>
+              </Folder>
+            </Folder>
+          </Folder>
+        </TreeFolder>
       </header>
     </div>
   );
