@@ -8,12 +8,12 @@ function App() {
       <header className="App-header">
         <TreeFolder>
           <Folder name='app'>
-            <Folder name='client' />
-            <Folder name='loja'>
-              <Folder name='barco' />
-              <Folder name='pijama'>
-                <Folder name='casaco'/>
-                <File name='calça'/>
+            <Folder name='backend' />
+            <Folder name='frontend'>
+              <Folder name='public' />
+              <Folder name='src'>
+                <Folder name='components'/>
+                <File name='App.js'/>
               </Folder>
             </Folder>
           </Folder>

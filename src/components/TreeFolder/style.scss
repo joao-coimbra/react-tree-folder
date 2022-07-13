@@ -33,6 +33,8 @@
             // font-size: .85rem;
             border-left: 1px solid rgba($color: white, $alpha: .2);
 
+            transition: all 300ms;
+
             svg {
                 // font-size: 15px;
                 min-width: 15px;
@@ -51,14 +53,36 @@
             }
 
             > .content {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+
                 > div {
                     display: flex;
                     gap: 2px;
                     align-items: center;
+
+                    &.funcs {
+                        min-width: fit-content;
+                        display: none;
+                        gap: 5px;
+                        margin-right: 5px;
+
+                        svg {
+                            min-width: 15px;
+                            min-height: 15px;
+                            cursor: pointer;
+                        }
+                    }
                 }
 
                 &:hover {
                     background-color: rgba($color: white, $alpha: .1);
+                
+                    > div.funcs {
+                        display: flex;
+                    }
                 }
 
                 p {
@@ -66,7 +90,7 @@
                 }
             }
 
-            &.open {
+            &.close {
 
                 .folder, .renderfile {
                     display: none;

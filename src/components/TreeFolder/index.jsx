@@ -3,12 +3,13 @@ import './style.scss'
 
 import { FcFolder, FcOpenedFolder, FcFile } from 'react-icons/fc';
 import { IoMdArrowDropright, IoMdArrowDropdown } from 'react-icons/io';
+import { VscNewFolder, VscNewFile } from 'react-icons/vsc';
 
 function TreeFolder(props) {
     
     const [initialPos, setInitialPos] = useState(null);
     const [initialSize, setInitialSize] = useState(null);
-    
+
     return(
         <div id='tree-folder'>
             <div className='content'>
@@ -32,14 +33,16 @@ const RenderFolder = ({name, children, isOpened = false}) => {
     const [childrens, setChildrens] = useState(children ? children : []);
 
     const [isOpen, setIsOpen] = useState(isOpened)
-    // console.log(props)
-    return  <ul className={'folder' + (isOpen ? ' open' : '')}>
-                <div className='content' onClick={() => {
-                    setIsOpen(!isOpen)
-                    setChildrens([...childrens, <RenderFile name='1' />])
-                }}>
+    
+    return  <ul className={'folder' + (isOpen ? '' : ' close')}>
+                <div className='content' onClick={e => {
+                    // if (!e) var e = window.event;
+                    e.cancelBubble = true;
+                    if (e.stopPropagation) e.stopPropagation();
+                                            setIsOpen(!isOpen)
+                                        }}>
                     <div>
-                        {isOpen
+                        {!isOpen
                             ? <>
                                 <IoMdArrowDropright/>
                                 <FcFolder />
@@ -50,6 +53,20 @@ const RenderFolder = ({name, children, isOpened = false}) => {
                             </>
                         }
                         <p>{name}</p>
+                    </div>
+                    <div className='funcs'>
+                        <VscNewFolder title='new folder' onClick={e => {
+                                // if (!e) var e = window.event;
+                                e.cancelBubble = true;
+                                if (e.stopPropagation) e.stopPropagation();
+                                setChildrens([...childrens, <RenderFolder name='new folder' />])
+                            }}/>
+                        <VscNewFile title='new file' onClick={e => {
+                                // if (!e) var e = window.event;
+                                e.cancelBubble = true;
+                                if (e.stopPropagation) e.stopPropagation();
+                                setChildrens([...childrens, <RenderFile name='new file' />])
+                            }}/>
                     </div>
                 </div>
                 {Array.isArray(childrens)
